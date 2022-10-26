@@ -10,7 +10,10 @@ import pandas as pd
 # from modules.auxiliar import TextColor, import_as_tsv
 from multiprocessing import Process, Queue, cpu_count
 import multiprocessing
-multiprocessing.set_start_method("fork")
+
+from sys import platform
+if platform == 'darwin':
+    multiprocessing.set_start_method("fork")
 
 
 class UserFeatureMapper:

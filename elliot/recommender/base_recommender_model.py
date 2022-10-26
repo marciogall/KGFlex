@@ -69,8 +69,7 @@ class BaseRecommenderModel(ABC):
         self._params_list = []
 
     def get_params_shortcut(self):
-        return "_".join([str(p[2])+":"+ str(p[5](getattr(self, p[0])) if p[5] else getattr(self, p[0])) for p in self._params_list])
-
+        return "_".join([str(p[2]) + "_" + str(p[5](getattr(self, p[0])) if p[5] else getattr(self, p[0])) for p in self._params_list])
     def autoset_params(self):
         """
         Define Parameters as tuples: (variable_name, public_name, shortcut, default, reading_function, printing_function)
