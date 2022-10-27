@@ -1,0 +1,28 @@
+experiment:
+  dataset: movielens1m
+  data_config:
+    strategy: dataset
+    dataset_path: ../data/{0}/dataset.tsv
+  prefiltering:
+    strategy: iterative_k_core
+    core: 10
+  splitting:
+    save_on_disk: True
+    save_folder: ../data/{0}/dataset_prova_prefiltrato
+    test_splitting:
+      strategy: random_subsampling
+      test_ratio: 0.5
+  top_k: 10
+  evaluation:
+    cutoffs: [10, 5]
+    simple_metrics: [nDCG]
+    relevance_threshold: 3
+  gpu: 1
+  external_models_path: ../external/models/__init__.py
+  models:
+    Random:
+      meta:
+        verbose: True
+        save_recs: True
+      seed: 42
+    
