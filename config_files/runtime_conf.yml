@@ -9,17 +9,11 @@ experiment:
       map: ../data/sub-movielens1m-gallucci/mapping.tsv
       features: ../data/sub-movielens1m-gallucci/item_features.tsv
       predicates: ../data/sub-movielens1m-gallucci/predicate_mapping.tsv
-  prefiltering:
-    strategy: global_threshold
-    threshold: 3
   splitting:
     test_splitting:
       strategy: random_subsampling
       test_ratio: 0.2
-      fold: 1
-    validation_splitting:
-      strategy: random_subsampling
-      test_ratio: 0.2
+      folds: 1
   top_k: 10
   evaluation:
     cutoffs: [10, 5, 1]

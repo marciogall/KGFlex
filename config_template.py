@@ -14,10 +14,6 @@ TEMPLATE = """experiment:
       strategy: random_subsampling
       test_ratio: 0.2
       folds: 1
-    validation_splitting:
-      strategy: random_subsampling
-      test_ratio: 0.2
-      folds: 1
   top_k: 10
   evaluation:
     cutoffs: [10, 5, 1]
