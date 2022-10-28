@@ -3,7 +3,7 @@ Module description:
 
 """
 
-__version__ = '0.1'
+__version__ = '0.3.1'
 __author__ = 'Vito Walter Anelli, Claudio Pomo'
 __email__ = 'vitowalter.anelli@poliba.it, claudio.pomo@poliba.it'
 
@@ -16,8 +16,6 @@ from elliot.utils.write import store_recommendation
 from elliot.recommender.latent_factor_models.PureSVD.pure_svd_model import PureSVDModel
 from elliot.recommender.base_recommender_model import BaseRecommenderModel
 from elliot.recommender.base_recommender_model import init_charger
-
-np.random.seed(42)
 
 
 class PureSVD(RecMixin, BaseRecommenderModel):
@@ -44,22 +42,15 @@ class PureSVD(RecMixin, BaseRecommenderModel):
 
     @init_charger
     def __init__(self, data, config, params, *args, **kwargs):
-        self._random = np.random
 
         self._params_list = [
-            ("_factors", "factors", "factors", 10, None, None),
-            ("_seed", "seed", "seed", 42, None, None)
+            ("_factors", "factors", "factors", 10, None, None)
         ]
         self.autoset_params()
 
         self._ratings = self._data.train_dict
         self._sp_i_train = self._data.sp_i_train
         self._model = PureSVDModel(self._factors, self._data, self._seed)
-
-    # def get_recommendations(self, k: int = 100):
-    #     return {u: self._model.get_user_recs(u, k) for u in self._ratings.keys()}
-    #
-    #
 
     def get_recommendations(self, k: int = 10):
         predictions_top_k_val = {}
@@ -96,21 +87,6 @@ class PureSVD(RecMixin, BaseRecommenderModel):
         self._model.train_step()
 
         self.evaluate()
-
-        # print("Computation finished, producing recommendations")
-        #
-        # recs = self.get_recommendations(self.evaluator.get_needed_recommendations())
-        # result_dict = self.evaluator.eval(recs)
-        # self._results.append(result_dict)
-        #
-        # print("******************************************")
-        # print("Saving to files")
-        #
-        # if self._save_weights:
-        #     with open(self._saving_filepath, "wb") as f:
-        #         pickle.dump(self._model.get_model_state(), f)
-        # if self._save_recs:
-        #     store_recommendation(recs, self._config.path_output_rec_result + f"{self.name}.tsv")
 
     def restore_weights(self):
         try:

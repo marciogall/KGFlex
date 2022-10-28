@@ -3,10 +3,10 @@ from scipy.sparse import csr_matrix
 from tqdm import tqdm
 import math
 
-from elliot.recommender import BaseRecommenderModel
-from elliot.recommender.base_recommender_model import init_charger
-from elliot.recommender.recommender_utils_mixin import RecMixin
-from elliot.utils.write import store_recommendation
+from old_elliot.recommender import BaseRecommenderModel
+from old_elliot.recommender.base_recommender_model import init_charger
+from old_elliot.recommender.recommender_utils_mixin import RecMixin
+from old_elliot.utils.write import store_recommendation
 
 from .UserFeatureMapper import UserFeatureMapper
 from . import Client, ClientModel, Server, ServerModel

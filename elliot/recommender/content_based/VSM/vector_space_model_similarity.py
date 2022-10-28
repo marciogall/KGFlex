@@ -1,3 +1,5 @@
+import pickle
+
 import numpy as np
 from sklearn.metrics import pairwise_distances
 from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances, haversine_distances, chi2_kernel, \
@@ -6,7 +8,7 @@ from sklearn.metrics.pairwise import cosine_similarity, euclidean_distances, hav
 
 class Similarity(object):
     """
-    Simple kNN class
+    Simple VSM class
     """
 
     def __init__(self, data, user_profile_matrix, item_attribute_matrix, similarity):
@@ -58,9 +60,6 @@ class Similarity(object):
         else:
             raise Exception("Not implemented similarity")
 
-    def get_transactions(self):
-        return self._transactions
-
     def get_user_recs(self, u, mask, k):
         user_id = self._data.public_users.get(u)
         user_recs = self._similarity_matrix[user_id]
@@ -68,8 +67,6 @@ class Similarity(object):
         user_recs[~user_recs_mask] = -np.inf
         indices, values = zip(*[(self._data.private_items.get(u_list[0]), u_list[1])
                               for u_list in enumerate(user_recs)])
-
-        # indices, values = zip(*predictions.items())
         indices = np.array(indices)
         values = np.array(values)
         local_k = min(k, len(values))
@@ -81,12 +78,16 @@ class Similarity(object):
 
     def get_model_state(self):
         saving_dict = {}
-        saving_dict['_neighbors'] = self._neighbors
         saving_dict['_similarity'] = self._similarity
-        saving_dict['_num_neighbors'] = self._num_neighbors
         return saving_dict
 
     def set_model_state(self, saving_dict):
-        self._neighbors = saving_dict['_neighbors']
         self._similarity = saving_dict['_similarity']
-        self._num_neighbors = saving_dict['_num_neighbors']
+
+    def load_weights(self, path):
+        with open(path, "rb") as f:
+            self.set_model_state(pickle.load(f))
+
+    def save_weights(self, path):
+        with open(path, "wb") as f:
+            pickle.dump(self.get_model_state(), f)

@@ -1,9 +1,9 @@
 from .UserFeatureMapper import UserFeatureMapper
 from collections import defaultdict
 import numpy as np
-from elliot.recommender import BaseRecommenderModel
-from elliot.recommender.base_recommender_model import init_charger
-from elliot.recommender.recommender_utils_mixin import RecMixin
+from old_elliot.recommender import BaseRecommenderModel
+from old_elliot.recommender.base_recommender_model import init_charger
+from old_elliot.recommender.recommender_utils_mixin import RecMixin
 import pandas as pd
 import os
 

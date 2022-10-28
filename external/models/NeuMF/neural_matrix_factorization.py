@@ -13,10 +13,10 @@ import numpy as np
 from tqdm import tqdm
 
 from . import custom_sampler as ps
-from elliot.recommender.base_recommender_model import BaseRecommenderModel
-from elliot.recommender.base_recommender_model import init_charger
+from old_elliot.recommender.base_recommender_model import BaseRecommenderModel
+from old_elliot.recommender.base_recommender_model import init_charger
 from .neural_matrix_factorization_model import NeuralMatrixFactorizationModel
-from elliot.recommender.recommender_utils_mixin import RecMixin
+from old_elliot.recommender.recommender_utils_mixin import RecMixin
 
 
 

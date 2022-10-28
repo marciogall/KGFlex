@@ -2,12 +2,12 @@ import operator
 
 import numpy as np
 
-from elliot.evaluation.evaluator import Evaluator
-from elliot.recommender.base_recommender_model import BaseRecommenderModel
-from elliot.recommender.recommender_utils_mixin import RecMixin
-from elliot.utils.folder import build_model_folder
-from elliot.utils.write import store_recommendation
-from elliot.recommender.base_recommender_model import init_charger
+from old_elliot.evaluation.evaluator import Evaluator
+from old_elliot.recommender.base_recommender_model import BaseRecommenderModel
+from old_elliot.recommender.recommender_utils_mixin import RecMixin
+from old_elliot.utils.folder import build_model_folder
+from old_elliot.utils.write import store_recommendation
+from old_elliot.recommender.base_recommender_model import init_charger
 
 np.random.seed(0)
 

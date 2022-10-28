@@ -14,10 +14,10 @@ from tqdm import tqdm
 import numpy as np
 
 from . import custom_sampler_rendle as ps
-from elliot.recommender.base_recommender_model import BaseRecommenderModel
-from elliot.recommender.base_recommender_model import init_charger
-from elliot.recommender.recommender_utils_mixin import RecMixin
-from elliot.utils.write import store_recommendation
+from old_elliot.recommender.base_recommender_model import BaseRecommenderModel
+from old_elliot.recommender.base_recommender_model import init_charger
+from old_elliot.recommender.recommender_utils_mixin import RecMixin
+from old_elliot.utils.write import store_recommendation
 
 from .MF_model import MFModel
 

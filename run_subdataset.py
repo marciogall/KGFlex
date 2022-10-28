@@ -19,6 +19,8 @@ datasets = args.dataset
 start = args.start
 end = args.end
 
+print(f'Running from {start} to {end}')
+
 # # check if datasets exist
 # for dataset in datasets:
 #     for sub in range(start, end):
@@ -29,6 +31,7 @@ end = args.end
 # run experiments on each generated dataset
 for dataset in datasets:
     for sub in range(start, end):
+        print(f'Eseguendo il numero {sub}')
         df = pd.read_csv(f'./data/{dataset}/{sub}/dataset_filtered_ordered_g{sub}.tsv', sep="\t", header=None)
         max_users = (df[0].nunique())*0.5
         max_items = (df[1].nunique())*0.5
