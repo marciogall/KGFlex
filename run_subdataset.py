@@ -30,8 +30,8 @@ end = args.end
 for dataset in datasets:
     for sub in range(start, end):
         df = pd.read_csv(f'./data/{dataset}/{sub}/dataset_filtered_ordered_g{sub}.tsv', sep="\t", header=None)
-        max_users = df[0].nunique()
-        max_items = df[1].nunique()
+        max_users = (df[0].nunique())*0.5
+        max_items = (df[1].nunique())*0.5
         config = TEMPLATE.format(dataset=dataset, sub=sub, max_users=max_users, max_items=max_items)
         config_path = os.path.join(config_dir, 'runtime_conf.yml')
         with open(config_path, 'w') as file:
